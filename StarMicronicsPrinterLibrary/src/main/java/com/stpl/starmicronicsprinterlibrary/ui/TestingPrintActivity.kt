@@ -60,7 +60,7 @@ class TestingPrintActivity : AppCompatActivity(), View.OnClickListener {
                                 }
                             }
 
-                            override fun onFlailedResult(message: String?) {
+                            override fun onFailureResult(message: String?) {
                                 TextViewDataNotFound.text = message
                                 TextViewDataNotFound.visibility = View.VISIBLE
                                 recyclerViewListPrinter.visibility = View.GONE
