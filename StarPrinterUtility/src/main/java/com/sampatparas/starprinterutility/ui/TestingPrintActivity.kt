@@ -51,28 +51,27 @@ class TestingPrintActivity : AppCompatActivity(), View.OnClickListener {
                             override fun onSuccessSearchResult(result: MutableList<SearchResultInfo>?) {
                                 binding?.recyclerViewListPrinter?.visibility = View.VISIBLE
                                 binding?.TextViewDataNotFound?.visibility = View.GONE
+                                searchResultArray.clear()
+                                searchResultArray.addAll(result!!)
                                 if (adapter != null) {
                                     adapter?.notifyDataSetChanged()
                                 } else {
                                     setAdapter()
                                 }
                             }
-
                             override fun onFlailedResult(message: String?) {
                                 binding?.TextViewDataNotFound?.text = message
                                 binding?.TextViewDataNotFound?.visibility = View.VISIBLE
                                 binding?.recyclerViewListPrinter?.visibility = View.GONE
                             }
-
                         }).searchPrinter(selectedType)
                     }
                 dialog.show(supportFragmentManager, "")
             }
         }
     }
-
     private fun setAdapter() {
-        adapter = SearchResultAdapter(searchResultArray, supportFragmentManager)
+        adapter = SearchResultAdapter(this,searchResultArray, supportFragmentManager)
         binding?.recyclerViewListPrinter?.adapter = adapter
     }
 }

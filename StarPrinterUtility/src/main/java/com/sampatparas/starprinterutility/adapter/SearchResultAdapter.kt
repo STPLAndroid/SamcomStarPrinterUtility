@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sampatparas.starprinterutility.R
@@ -15,6 +16,8 @@ import com.sampatparas.starprinterutility.printerUtils.ModelConfirmDialogFragmen
 import com.sampatparas.starprinterutility.printerUtils.ModelSelectDialogFragment
 
 class SearchResultAdapter(
+    private val activity: AppCompatActivity,
+
     private val searchResultArray: List<SearchResultInfo>,
     private var fragmentManager: FragmentManager?
 ) : RecyclerView.Adapter<SearchResultAdapter.MyViewHolder>() {
@@ -31,28 +34,7 @@ class SearchResultAdapter(
         }
         holder.binding.listPrinterInfoRow.setOnClickListener {
             val searchResultInfo = searchResultArray[position]
-            val modelName = searchResultInfo.modelName
-            val model = ModelCapability.getModel(modelName)
-            if (model == ModelCapability.NONE) {
-                val dialog = ModelSelectDialogFragment.newInstance(Const.MODEL_SELECT_DIALOG_0)
-                dialog.setmCallbackTarget { tag, data ->
-                    val m1 = data.getIntExtra(Const.BUNDLE_KEY_MODEL_INDEX, 0)
-                    val dialog =
-                        ModelConfirmDialogFragmentSample.newInstance(Const.MODEL_CONFIRM_DIALOG, m1, searchResultInfo)
-                    dialog.show(fragmentManager!!, ModelConfirmDialogFragmentSample::class.java.simpleName
-                    )
-                }
-                dialog.show(fragmentManager!!, "")
-            } else {
-                val dialog =
-                    ModelConfirmDialogFragmentSample.newInstance(
-                        Const.MODEL_CONFIRM_DIALOG,
-                        model,searchResultInfo
-                    )
-                dialog.show(
-                    fragmentManager!!, ModelConfirmDialogFragmentSample::class.java.simpleName
-                )
-            }
+            searchResultInfo.confirmPrinter(activity);
             if (holder.binding.checkedIconImageView.visibility == View.VISIBLE) {
                 holder.binding.checkedIconImageView.visibility = View.GONE
 
