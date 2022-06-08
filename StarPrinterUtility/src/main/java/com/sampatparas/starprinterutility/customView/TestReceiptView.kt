@@ -1,5 +1,4 @@
 package com.sampatparas.starprinterutility.customView
-
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
@@ -10,9 +9,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.sampatparas.starprinterutility.R
-import kotlinx.android.synthetic.main.test_receipt_view.view.*
-
+import com.sampatparas.starprinterutility.databinding.TestReceiptViewBinding
 class TestReceiptView : LinearLayoutCompat {
+    private var binding: TestReceiptViewBinding? = null
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -27,10 +26,10 @@ class TestReceiptView : LinearLayoutCompat {
         setup()
     }
     private fun setup() {
-        val inflater = context
-            .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        binding= TestReceiptViewBinding.inflate(inflater)
         inflater.inflate(R.layout.test_receipt_view, this, true)
-        overrideFonts(context, llBase)
+        overrideFonts(context, binding!!.llBase)
     }
     private fun overrideFonts(context: Context, v: View) {
         try {
@@ -41,13 +40,13 @@ class TestReceiptView : LinearLayoutCompat {
                     overrideFonts(context, child)
                 }
             } else if (v is TextView) {
-                (v as TextView).setTypeface(Typeface.createFromAsset(context.assets, "bold.ttf"))
-                (v as TextView).setTextColor(Color.BLACK)
+                v.typeface = Typeface.createFromAsset(context.assets, "bold.ttf")
+                v.setTextColor(Color.BLACK)
             }
         } catch (e: Exception) {
         }
     }
     fun setData(orderID:String) {
-        tvOrderId.text = "ORDER ID $orderID"
+        binding?.tvOrderId?.text = "ORDER ID $orderID"
     }
 }

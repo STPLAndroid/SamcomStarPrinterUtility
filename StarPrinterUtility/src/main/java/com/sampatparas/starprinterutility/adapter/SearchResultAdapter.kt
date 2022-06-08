@@ -8,11 +8,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sampatparas.starprinterutility.R
 import com.sampatparas.starprinterutility.Utils.Const
+import com.sampatparas.starprinterutility.databinding.RowPrinterConnectionListBinding
 import com.sampatparas.starprinterutility.model.SearchResultInfo
 import com.sampatparas.starprinterutility.printerUtils.ModelCapability
 import com.sampatparas.starprinterutility.printerUtils.ModelConfirmDialogFragmentSample
 import com.sampatparas.starprinterutility.printerUtils.ModelSelectDialogFragment
-import kotlinx.android.synthetic.main.row_printer_connection_list.view.*
 
 class SearchResultAdapter(
     private val searchResultArray: List<SearchResultInfo>,
@@ -27,9 +27,9 @@ class SearchResultAdapter(
         val searchResultInfo = searchResultArray[position]
         val modelName = searchResultInfo.modelName
         if (modelName != null) {
-            holder.itemView.modelNameTextView.text = modelName
+            holder.binding.modelNameTextView.text = modelName
         }
-        holder.itemView.listPrinterInfoRow.setOnClickListener {
+        holder.binding.listPrinterInfoRow.setOnClickListener {
             val searchResultInfo = searchResultArray[position]
             val modelName = searchResultInfo.modelName
             val model = ModelCapability.getModel(modelName)
@@ -53,12 +53,12 @@ class SearchResultAdapter(
                     fragmentManager!!, ModelConfirmDialogFragmentSample::class.java.simpleName
                 )
             }
-            if (holder.itemView.checkedIconImageView.visibility == View.VISIBLE) {
-                holder.itemView.checkedIconImageView.visibility = View.GONE
+            if (holder.binding.checkedIconImageView.visibility == View.VISIBLE) {
+                holder.binding.checkedIconImageView.visibility = View.GONE
 
             } else {
-                holder.itemView.checkedIconImageView.visibility = View.VISIBLE
-                holder.itemView.checkedIconImageView.setImageResource(R.drawable.checked_icon)
+                holder.binding.checkedIconImageView.visibility = View.VISIBLE
+                holder.binding.checkedIconImageView.setImageResource(R.drawable.checked_icon)
             }
         }
     }
@@ -68,5 +68,6 @@ class SearchResultAdapter(
     }
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = RowPrinterConnectionListBinding.bind(view)
     }
 }
