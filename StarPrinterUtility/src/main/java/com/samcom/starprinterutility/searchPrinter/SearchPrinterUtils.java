@@ -88,7 +88,7 @@ public class SearchPrinterUtils {
                 addItem(info);
             }
             if (searchResultArray.isEmpty()) {
-                printerTypeCallBack.onFlailedResult("no item found");
+                printerTypeCallBack.onFailedSearchResult("no item found");
             } else {
                 printerTypeCallBack.onSuccessSearchResult(searchResultArray);
             }
@@ -128,7 +128,7 @@ public class SearchPrinterUtils {
             }
             if (count == 3) {
                 if (searchResultArray.isEmpty()) {
-                    printerTypeCallBack.onFlailedResult("no item found");
+                    printerTypeCallBack.onFailedSearchResult("no item found");
                 } else {
                     printerTypeCallBack.onSuccessSearchResult(searchResultArray);
                 }
