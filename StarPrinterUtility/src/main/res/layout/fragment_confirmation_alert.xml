@@ -2,10 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white">
+
     <RelativeLayout
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="?android:actionBarSize"
         android:background="@color/white"
         android:orientation="horizontal">
 
@@ -15,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
-            android:layout_marginBottom="18dp"
             android:background="@drawable/ic_arrow_back"
             android:backgroundTint="@color/black" />
 
