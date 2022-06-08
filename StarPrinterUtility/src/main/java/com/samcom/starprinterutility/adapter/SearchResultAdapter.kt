@@ -8,16 +8,18 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.samcom.starprinterutility.R
 import com.samcom.starprinterutility.databinding.RowPrinterConnectionListBinding
+import com.samcom.starprinterutility.interfaces.SelectPrinterCallBack
 import com.samcom.starprinterutility.model.SearchResultInfo
 
 class SearchResultAdapter(
     private val activity: AppCompatActivity,
-
     private val searchResultArray: List<SearchResultInfo>,
     private var fragmentManager: FragmentManager?
 ) : RecyclerView.Adapter<SearchResultAdapter.MyViewHolder>() {
+    var index = -1;
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_printer_connection_list, parent, false)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.row_printer_connection_list, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -29,14 +31,17 @@ class SearchResultAdapter(
         }
         holder.binding.listPrinterInfoRow.setOnClickListener {
             val searchResultInfo = searchResultArray[position]
-            searchResultInfo.confirmPrinter(activity);
-            if (holder.binding.checkedIconImageView.visibility == View.VISIBLE) {
-                holder.binding.checkedIconImageView.visibility = View.GONE
-
-            } else {
-                holder.binding.checkedIconImageView.visibility = View.VISIBLE
-                holder.binding.checkedIconImageView.setImageResource(R.drawable.checked_icon)
-            }
+            searchResultInfo.confirmPrinter(activity, object : SelectPrinterCallBack {
+                override fun printerSelected() {
+                    index = position
+                    notifyDataSetChanged()
+                }
+            });
+        }
+        if (index == position) {
+            holder.binding.checkedIconImageView.visibility = View.VISIBLE
+        } else {
+            holder.binding.checkedIconImageView.visibility = View.GONE
         }
     }
 

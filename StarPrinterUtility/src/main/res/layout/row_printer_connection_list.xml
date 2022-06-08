@@ -49,6 +49,7 @@
             android:contentDescription="Checked or Unchecked icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:src="@drawable/checked_icon"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_gravity="center_vertical" />

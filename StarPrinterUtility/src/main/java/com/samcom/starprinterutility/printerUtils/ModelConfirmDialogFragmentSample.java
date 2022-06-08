@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.samcom.starprinterutility.R;
+import com.samcom.starprinterutility.interfaces.SelectPrinterCallBack;
 import com.samcom.starprinterutility.model.PrinterSettings;
 import com.samcom.starprinterutility.model.SearchResultInfo;
 import com.samcom.starprinterutility.searchPrinter.BaseDialogFragment;
@@ -44,6 +45,7 @@ public class ModelConfirmDialogFragmentSample extends BaseDialogFragment {
     String mModelName = "";*/
 
     private SearchResultInfo mSearchResultInfo;
+    private SelectPrinterCallBack selectPrinterCallBack;
 
     public static ModelConfirmDialogFragmentSample newInstance(String tag, int model, SearchResultInfo searchResultInfo) {
         ModelConfirmDialogFragmentSample dialogFragment = new ModelConfirmDialogFragmentSample();
@@ -60,6 +62,10 @@ public class ModelConfirmDialogFragmentSample extends BaseDialogFragment {
         dialogFragment.setArguments(args);
 
         return dialogFragment;
+    }
+
+    public void setPrinterCallBack(SelectPrinterCallBack selectPrinterCallBack) {
+        this.selectPrinterCallBack = selectPrinterCallBack;
     }
 
     @Override
@@ -106,12 +112,14 @@ public class ModelConfirmDialogFragmentSample extends BaseDialogFragment {
                 // mModelIndex = data.getIntExtra(BUNDLE_KEY_MODEL_INDEX, ModelCapability.NONE);
                 mPortSettings = ModelCapability.getPortSettings(mModelIndex);
                 selectPaperSizeAndCashDrawerStatusDialog();
+                selectPrinterCallBack.printerSelected();
                 /*Intent intent = new Intent(DIALOG_CALLBACK);
                 intent.putExtra("tag",args.getString(DIALOG_TAG));
                 intent.putExtra(LABEL_POSITIVE, LABEL_POSITIVE);
                 intent.putExtra(BUNDLE_KEY_MODEL_INDEX, args.getInt(BUNDLE_KEY_MODEL_INDEX));
                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
                 dismiss();*/
+
             }
         });
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -198,6 +206,7 @@ public class ModelConfirmDialogFragmentSample extends BaseDialogFragment {
     }
 
 
+
     private void initView(View view) {
         rlTop = (RelativeLayout) view.findViewById(R.id.rlTop);
         imgBack = (ImageView) view.findViewById(R.id.imgBack);
@@ -206,4 +215,5 @@ public class ModelConfirmDialogFragmentSample extends BaseDialogFragment {
         btnPositive = (Button) view.findViewById(R.id.btnPositive);
         btnNegative = (Button) view.findViewById(R.id.btnNegative);
     }
+
 }
