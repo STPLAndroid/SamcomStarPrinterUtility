@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sampatparas.starprinterutility">
+    package="com.samcom.starprinterutility">
 
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -13,7 +13,7 @@
 
     <application>
         <activity
-            android:name=".ui.TestingPrintActivity"
+            android:name="com.samcom.starprinterutility.ui.TestingPrintActivity"
             android:exported="false" />
     </application>
 

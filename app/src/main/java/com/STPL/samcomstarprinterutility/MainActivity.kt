@@ -3,7 +3,7 @@ package com.STPL.samcomstarprinterutility
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.sampatparas.starprinterutility.ui.TestingPrintActivity
+import com.samcom.starprinterutility.ui.TestingPrintActivity
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {

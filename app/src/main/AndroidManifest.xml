@@ -33,7 +33,7 @@
         </activity>
 
         <activity
-            android:name="com.sampatparas.starprinterutility.ui.TestingPrintActivity"
+            android:name="com.samcom.starprinterutility.ui.TestingPrintActivity"
            >
         </activity>
     </application>
