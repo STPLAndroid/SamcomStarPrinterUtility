@@ -1,6 +1,7 @@
 package com.stpl.starmicronicsprinterlibrary.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -53,6 +54,8 @@ class TestingPrintActivity : AppCompatActivity(), View.OnClickListener {
                             override fun onSuccessSearchResult(result: MutableList<SearchResultInfo>?) {
                                 recyclerViewListPrinter.visibility = View.VISIBLE
                                 TextViewDataNotFound.visibility = View.GONE
+                                searchResultArray.clear()
+                                searchResultArray.addAll(result!!)
                                 if (adapter != null) {
                                     adapter?.notifyDataSetChanged()
                                 } else {
@@ -60,7 +63,7 @@ class TestingPrintActivity : AppCompatActivity(), View.OnClickListener {
                                 }
                             }
 
-                            override fun onFailureResult(message: String?) {
+                            override fun onFailSearchResult(message: String?) {
                                 TextViewDataNotFound.text = message
                                 TextViewDataNotFound.visibility = View.VISIBLE
                                 recyclerViewListPrinter.visibility = View.GONE
@@ -73,8 +76,13 @@ class TestingPrintActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e("onActivityResult","onActivityResult BT::::")
+    }
+
     private fun setAdapter() {
-        adapter = SearchResultAdapter(searchResultArray, supportFragmentManager)
+        adapter = SearchResultAdapter(this,searchResultArray, supportFragmentManager)
         recyclerViewListPrinter.adapter = adapter
     }
 }

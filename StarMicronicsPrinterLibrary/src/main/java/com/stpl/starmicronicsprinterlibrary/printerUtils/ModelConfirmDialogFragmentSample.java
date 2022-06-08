@@ -198,6 +198,8 @@ public class ModelConfirmDialogFragmentSample extends BaseDialogFragment {
     }
 
 
+
+
     private void initView(View view) {
         rlTop = (RelativeLayout) view.findViewById(R.id.rlTop);
         imgBack = (ImageView) view.findViewById(R.id.imgBack);

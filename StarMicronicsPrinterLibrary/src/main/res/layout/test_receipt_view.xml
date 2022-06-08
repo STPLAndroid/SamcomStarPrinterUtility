@@ -34,11 +34,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Store"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvStoreName"
             android:layout_width="0dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="end"
@@ -56,6 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Date"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
         <TextView
@@ -63,6 +69,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:gravity="end"
             android:textSize="18sp"
             tools:text="01/01/2022 19:00" />
@@ -103,6 +111,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transaction ID"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
         <TextView
@@ -111,6 +121,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:gravity="end"
             android:textSize="18sp"
             tools:text="745ditjghyrRtyze" />
