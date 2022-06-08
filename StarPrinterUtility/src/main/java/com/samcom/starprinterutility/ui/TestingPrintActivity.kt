@@ -47,6 +47,9 @@ class TestingPrintActivity : AppCompatActivity(), View.OnClickListener {
                     PrinterConnectionTypesDialogFragment.newInstance { selectedType ->
                         binding?.textViewConnectionName?.text = selectedType
                         searchResultArray.clear()
+
+
+
                         SearchPrinterUtils(this, object : PrinterListCallBack {
                             @SuppressLint("NotifyDataSetChanged")
                             override fun onSuccessSearchResult(result: MutableList<SearchResultInfo>?) {

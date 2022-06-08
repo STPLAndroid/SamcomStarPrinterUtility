@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PrinterListCallBack {
     void onSuccessSearchResult(List<SearchResultInfo> result);
-    void onFlailedResult(String message);
+    void onFailedSearchResult(String message);
 }
